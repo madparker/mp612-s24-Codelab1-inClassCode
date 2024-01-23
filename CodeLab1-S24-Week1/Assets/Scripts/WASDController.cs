@@ -37,6 +37,7 @@ public class WASDController : MonoBehaviour
             rb.AddForce(forceAmount * Vector3.right);
         }
 
+        //use normalization and magnitude to maintain maxVelocity or less
         if (rb.velocity.magnitude > maxVelocity)
         {
             Vector3 newVelocity = rb.velocity.normalized;

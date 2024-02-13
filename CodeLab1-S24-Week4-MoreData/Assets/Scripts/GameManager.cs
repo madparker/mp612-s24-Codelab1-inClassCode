@@ -23,8 +23,33 @@ public class GameManager : MonoBehaviour
         set
         {
             score = value;
+
+            if (isHighScore(score))
+            {
+                
+            }
         }
 
+    }
+    
+    List<int> highScores;
+
+    public List<int> HighScores
+    {
+        get
+        {
+            if (highScores == null)
+            {
+                highScores = new List<int>();
+                
+                highScores.Add(0);
+                highScores.Insert(0, 3);
+                highScores.Insert(1, 2);
+                highScores.Insert(2, 1);
+            }
+
+            return highScores;
+        }
     }
 
     float timer = 0;
@@ -55,7 +80,14 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        display.text = "Score: " + score + "\nTime:" + (maxTime - (int)timer);
+        if (isInGame)
+        {
+            display.text = "Score: " + score + "\nTime:" + (maxTime - (int)timer);
+        }
+        else
+        {
+            display.text = "GAME OVER\nFINAL SCORE: " + score;
+        }
 
         //add the fraction of a second between frames to timer
         timer += Time.deltaTime;
@@ -66,5 +98,19 @@ public class GameManager : MonoBehaviour
             isInGame = false;
             SceneManager.LoadScene("EndScene");
         }
+    }
+
+    bool isHighScore(int score)
+    {
+
+        for (int i = 0; i < HighScores.Count; i++)
+        {
+            if (highScores[i] < score)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

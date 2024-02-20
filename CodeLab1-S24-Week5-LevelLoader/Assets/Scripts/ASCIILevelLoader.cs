@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class ASCIILevelLoader : MonoBehaviour
 {
-    int currentLevel;
+    int currentLevel = 0;
 
     string FILE_PATH;
     
     // Start is called before the first frame update
     void Start()
     {
-        FILE_PATH = Application.dataPath + "/Levels/Level1.txt";
+        FILE_PATH = Application.dataPath + "/Levels/LevelNum.txt";
         
         LoadLevel();
     }
@@ -26,7 +26,8 @@ public class ASCIILevelLoader : MonoBehaviour
     void LoadLevel()
     {
         //Get the lines from the file
-        string[] lines = File.ReadAllLines(FILE_PATH);
+        string[] lines = File.ReadAllLines(
+            FILE_PATH.Replace("Num", currentLevel + ""));
 
         for (int yLevelPos = 0; yLevelPos < lines.Length; yLevelPos++)
         {
@@ -47,13 +48,33 @@ public class ASCIILevelLoader : MonoBehaviour
 
                 Debug.Log(c);
 
-                //if the character is a 'W'
-                if (c == 'W')
+                GameObject newObject = null;
+
+                switch (c)
                 {
-                    //Add a wall to our scene
-                    GameObject newWall =
-                        Instantiate(Resources.Load<GameObject>("Prefabs/Wall"));
-                    newWall.transform.position = new Vector3(xLevelPos, -yLevelPos, 0);
+                    case 'W': //if the character is a 'W'
+                        newObject = //Add a wall to our scene
+                            Instantiate(Resources.Load<GameObject>("Prefabs/Wall"));
+                        break;
+                    case 'P': //if the character is a 'P'
+                        newObject = //Add a player to our scene
+                            Instantiate(Resources.Load<GameObject>("Prefabs/Player"));
+                        //align the camera with the player
+                        Camera.main.transform.parent = newObject.transform;
+                        Camera.main.transform.position = new Vector3(0, 0, -10);
+                        break;
+                    case 'S':
+                        newObject = //If the character is an 'S'
+                            Instantiate(Resources.Load<GameObject>("Prefabs/Spike"));
+                        break;
+                    default:
+                        break;
+                }
+
+                if (newObject != null)
+                {
+                    //Give it a position based on where it was in the ASCII file
+                    newObject.transform.position = new Vector2(xLevelPos, -yLevelPos);
                 }
             }
         }

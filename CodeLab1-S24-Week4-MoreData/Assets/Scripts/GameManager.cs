@@ -25,39 +25,7 @@ public class GameManager : MonoBehaviour
             return score;
         }
 
-        set
-        {
-            score = value;
-
-            if (isHighScore(score))
-            {
-                int highScoreSlot = -1;
-
-                for (int i = 0; i < HighScores.Count; i++)
-                {
-                    if (score > highScores[i])
-                    {
-                        highScoreSlot = i;
-                        break;
-                    }
-                }
-                
-                highScores.Insert(highScoreSlot, score);
-
-                highScores = highScores.GetRange(0, 5);
-
-                string scoreBoardText = "";
-
-                foreach (var highScore in highScores)
-                {
-                    scoreBoardText += highScore + "\n";
-                }
-
-                highScoresString = scoreBoardText;
-                
-                File.WriteAllText(FILE_FULL_PATH, highScoresString);
-            }
-        }
+        set { score = value; }
 
     }
 
@@ -69,8 +37,10 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            if (highScores == null)
+            if (highScores == null && File.Exists(FILE_FULL_PATH))
             {
+                Debug.Log("got from file");
+                
                 highScores = new List<int>();
 
                 highScoresString = File.ReadAllText(FILE_FULL_PATH);
@@ -84,6 +54,15 @@ public class GameManager : MonoBehaviour
                     int currentScore = Int32.Parse(highScoreArray[i]);
                     highScores.Add(currentScore);
                 }
+            }
+            else if(highScores == null)
+            {
+                Debug.Log("NOPE");
+                highScores = new List<int>();
+                highScores.Add(3);
+                highScores.Add(2);
+                highScores.Add(1);
+                highScores.Add(0);
             }
 
             return highScores;
@@ -136,10 +115,11 @@ public class GameManager : MonoBehaviour
         {
             isInGame = false;
             SceneManager.LoadScene("EndScene");
+            SetHighScore();
         }
     }
 
-    bool isHighScore(int score)
+    bool IsHighScore(int score)
     {
 
         for (int i = 0; i < HighScores.Count; i++)
@@ -151,5 +131,37 @@ public class GameManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    void SetHighScore()
+    {
+        if (IsHighScore(score))
+        {
+            int highScoreSlot = -1;
+
+            for (int i = 0; i < HighScores.Count; i++)
+            {
+                if (score > highScores[i])
+                {
+                    highScoreSlot = i;
+                    break;
+                }
+            }
+                
+            highScores.Insert(highScoreSlot, score);
+
+            highScores = highScores.GetRange(0, 5);
+
+            string scoreBoardText = "";
+
+            foreach (var highScore in highScores)
+            {
+                scoreBoardText += highScore + "\n";
+            }
+
+            highScoresString = scoreBoardText;
+                
+            File.WriteAllText(FILE_FULL_PATH, highScoresString);
+        }
     }
 }

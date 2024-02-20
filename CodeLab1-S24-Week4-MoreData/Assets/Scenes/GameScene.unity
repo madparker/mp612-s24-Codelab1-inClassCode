@@ -550,7 +550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   display: {fileID: 1233395189}
   score: 0
-  maxTime: 3
+  maxTime: 5
 --- !u!4 &1308427260
 Transform:
   m_ObjectHideFlags: 0

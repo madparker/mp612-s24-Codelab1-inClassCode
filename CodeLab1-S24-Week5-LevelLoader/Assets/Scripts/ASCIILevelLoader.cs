@@ -7,11 +7,31 @@ public class ASCIILevelLoader : MonoBehaviour
 {
     int currentLevel = 0;
 
+    GameObject level;
+
+    public int CurrentLevel
+    {
+        get
+        {
+            return currentLevel;
+        }
+        
+        set
+        {
+            currentLevel = value;
+            LoadLevel();
+        }
+    }
+
     string FILE_PATH;
+
+    public static ASCIILevelLoader instance;
     
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
+        
         FILE_PATH = Application.dataPath + "/Levels/LevelNum.txt";
         
         LoadLevel();
@@ -25,6 +45,10 @@ public class ASCIILevelLoader : MonoBehaviour
 
     void LoadLevel()
     {
+        Destroy(level);
+        
+        level = new GameObject("Level Objects");
+        
         //Get the lines from the file
         string[] lines = File.ReadAllLines(
             FILE_PATH.Replace("Num", currentLevel + ""));
@@ -67,12 +91,17 @@ public class ASCIILevelLoader : MonoBehaviour
                         newObject = //If the character is an 'S'
                             Instantiate(Resources.Load<GameObject>("Prefabs/Spike"));
                         break;
+                    case 'G':
+                        newObject =
+                            Instantiate(Resources.Load<GameObject>("Prefabs/Goal"));
+                        break;
                     default:
                         break;
                 }
 
                 if (newObject != null)
                 {
+                    newObject.transform.parent = level.transform;
                     //Give it a position based on where it was in the ASCII file
                     newObject.transform.position = new Vector2(xLevelPos, -yLevelPos);
                 }

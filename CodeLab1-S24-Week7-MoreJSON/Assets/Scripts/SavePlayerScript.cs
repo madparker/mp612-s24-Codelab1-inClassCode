@@ -5,7 +5,6 @@ using SimpleJSON;
 
 public class SavePlayerScript : MonoBehaviour
 {
- 
     [TextArea (5, 20)] public string json ;
     // DEMO ( Array of Objects ) 
     /* 
@@ -20,9 +19,18 @@ public class SavePlayerScript : MonoBehaviour
     // DEMO ( Simple Objects ) 
     /*
         {
-            "x":1,
-            "y":2,
-            "z":3,
+            "pos":
+            {
+                "x":1,
+                "y":2,
+                "z":3,
+            },
+            "rot":
+            {
+                "x":90,
+                "y":45,
+                "z":0
+            }
         }
     */
     
@@ -55,17 +63,24 @@ public class SavePlayerScript : MonoBehaviour
 
     public void SimpleObjectParsing()
     {
-        JSONNode node = JSON.Parse(simpleObjectJson) ;
-        JSONObject position = node.AsObject ;
+        //Turn the JSON into a node (transform)
+        JSONNode transformNode = JSON.Parse(simpleObjectJson);
+
+        //Get the "pos" node from the the parent node (transform)
+        JSONNode postionNode = transformNode["pos"];
+        
+        //Turn the positionNode into a JSON Obj, so we can get values
+        JSONObject positionObject = postionNode.AsObject;
 
         Vector3 jsonPos = new Vector3();
 
-        jsonPos.x = position["x"].AsInt;
-        jsonPos.y = position["y"].AsInt;
-        jsonPos.z = position["z"].AsInt;
+        //Get the x, y, and z values out of the JSONObject position
+        jsonPos.x = positionObject["x"].AsInt;
+        jsonPos.y = positionObject["y"].AsInt;
+        jsonPos.z = positionObject["z"].AsInt;
 
         transform.position = jsonPos;
 
-        Debug.Log(position.ToString());
+        Debug.Log(positionObject.ToString());
     }
 }

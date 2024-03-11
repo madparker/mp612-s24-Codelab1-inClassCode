@@ -335,7 +335,7 @@ Transform:
   m_GameObject: {fileID: 973761666}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 73, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -463,7 +463,7 @@ MonoBehaviour:
     \"age\":7 },\n          { \"name\":\"Tuna\", \"age\":4 }\n       ]"
   simpleObjectJson: "        {\n            \"pos\":\n            {\n               
     \"x\":1,\n                \"y\":2,\n                \"z\":3,\n            },\n           
-    \"rot\":\n            {\n                \"x\":90,\n                \"y\":45,\n               
+    \"rot\":\n            {\n                \"x\":180,\n                \"y\":0,\n               
     \"z\":0\n            }\n        }"
 --- !u!4 &2006182115
 Transform:

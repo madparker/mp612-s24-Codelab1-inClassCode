@@ -44,7 +44,26 @@ public class SavePlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            JSONNode transformNode = new JSONObject();
+            
+            JSONObject posObj = new JSONObject();
+            
+            transformNode.Add("pos", posObj);
+            
+            posObj.Add("x", transform.position.x);
+            posObj.Add("y", transform.position.y);
+            posObj.Add("z", transform.position.z);
+            
+            //{
+            //  "pos":
+            //      {"x":0,
+            //       "y":0,
+            //       "z":0}
+            // }
+            Debug.Log(transformNode.ToString());
+        }
     }
     
     private void ArrayOfObjectsParsing () {
@@ -59,6 +78,8 @@ public class SavePlayerScript : MonoBehaviour
         }
         
         Debug.Log(allPersons.ToString());
+        
+        Debug.Log(allPersons[2].ToString());
     }
 
     public void SimpleObjectParsing()
@@ -66,6 +87,7 @@ public class SavePlayerScript : MonoBehaviour
         //Turn the JSON into a node (transform)
         JSONNode transformNode = JSON.Parse(simpleObjectJson);
 
+        //POSTION
         //Get the "pos" node from the the parent node (transform)
         JSONNode postionNode = transformNode["pos"];
         
@@ -79,7 +101,23 @@ public class SavePlayerScript : MonoBehaviour
         jsonPos.y = positionObject["y"].AsInt;
         jsonPos.z = positionObject["z"].AsInt;
 
+        //set the postion from the JSON
         transform.position = jsonPos;
+        
+        //ROTATION
+        JSONNode rotationNode = transformNode["rot"];
+
+        //Turn the rotationNode into a JSON Obj, so we can get values
+        JSONObject rotationObject = rotationNode.AsObject;
+
+        Vector3 jsonRot = new Vector3();
+
+        jsonRot.x = rotationObject["x"].AsInt;
+        jsonRot.y = rotationObject["y"].AsInt;
+        jsonRot.z = rotationObject["z"].AsInt;
+        
+        //set the rotation from the JSON
+        transform.Rotate(jsonRot);
 
         Debug.Log(positionObject.ToString());
     }

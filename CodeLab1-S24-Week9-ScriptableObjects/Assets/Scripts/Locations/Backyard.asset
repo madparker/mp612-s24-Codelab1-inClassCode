@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe53bc79bd1a44f76929ee11e361cf70, type: 3}
   m_Name: Backyard
   m_EditorClassIdentifier: 
-  locationName: 
-  locationDesc: 
+  locationName: Backyard
+  locationDesc: BBQ, worms in there, grass... touch it
+  north: {fileID: 0}

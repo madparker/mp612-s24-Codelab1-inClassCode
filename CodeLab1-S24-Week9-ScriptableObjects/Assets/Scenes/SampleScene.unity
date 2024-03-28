@@ -448,7 +448,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 364668988}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1321551009}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: MoveDir
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: E
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &364668988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -891,7 +903,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1005427625}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1321551009}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: MoveDir
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: S
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1005427625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1229,7 +1253,10 @@ MonoBehaviour:
   titleUI: {fileID: 203193805}
   descriptionUI: {fileID: 731867176}
   currentLocation: {fileID: 11400000, guid: ec0c01e0870844ee6b07c47e804ad81d, type: 2}
-  buttonNorth: {fileID: 0}
+  buttonNorth: {fileID: 1214779666}
+  buttonSouth: {fileID: 1005427624}
+  buttonWest: {fileID: 1371935286}
+  buttonEast: {fileID: 364668987}
 --- !u!4 &1321551010
 Transform:
   m_ObjectHideFlags: 0
@@ -1327,7 +1354,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1371935287}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1321551009}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: MoveDir
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: W
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1371935287
 MonoBehaviour:
   m_ObjectHideFlags: 0

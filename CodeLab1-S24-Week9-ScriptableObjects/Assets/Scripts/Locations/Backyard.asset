@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   locationName: Backyard
   locationDesc: BBQ, worms in there, grass... touch it
-  north: {fileID: 0}
+  north: {fileID: 11400000, guid: 8c98a262adc1844d19a4e32c0892d2b8, type: 2}
+  south: {fileID: 11400000, guid: ec0c01e0870844ee6b07c47e804ad81d, type: 2}
+  west: {fileID: 0}
+  east: {fileID: 0}

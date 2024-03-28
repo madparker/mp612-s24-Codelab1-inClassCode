@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe53bc79bd1a44f76929ee11e361cf70, type: 3}
   m_Name: Chasm
   m_EditorClassIdentifier: 
-  locationName: 
-  locationDesc: 
-  north: {fileID: 0}
+  locationName: Front Chasm
+  locationDesc: Don't fall in
+  north: {fileID: 11400000, guid: ec0c01e0870844ee6b07c47e804ad81d, type: 2}
   south: {fileID: 0}
   west: {fileID: 0}
   east: {fileID: 0}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="2D Arrays" t="Include">
+          <e p="SimpleConnectionGame.cs" t="Include" />
+        </e>
+        <e p="Dictionary" t="Include">
+          <e p="DictionaryExample.cs" t="Include" />
+        </e>
+        <e p="List" t="Include">
+          <e p="ListExample.cs" t="Include" />
+          <e p="listOfNames.txt" t="Include" />
+        </e>
+        <e p="Stacks and Queues" t="Include">
+          <e p="StackAndQueueExample.cs" t="Include" />
+        </e>
+      </e>
+      <e p="CodeLab1_DataStructures.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp/bin" t="ExcludeRecursive" />
+    </e>
+    <e p="$USER_HOME$/Library/Caches/Rider2019.3/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2019.3/resharper-host/local/Transient/ReSharperHost/v193/SolutionCaches/_CodeLab1_DataStructures.-931226818.00" t="ExcludeRecursive" />
+  </component>
+</project>

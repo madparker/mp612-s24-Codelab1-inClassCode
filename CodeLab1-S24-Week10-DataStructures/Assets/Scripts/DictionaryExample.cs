@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class DictionaryExample : MonoBehaviour
 {
+
     public Text display;
 
     public void Update()

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SeatingChartController : MonoBehaviour
 {
-    private int numRows = 4;
+    private int numRows = 5;
     private int numCols = 8;
 
     private string[,] seatingChart;
@@ -24,15 +24,15 @@ public class SeatingChartController : MonoBehaviour
             }
         }
 
-        seatingChart[7, 0] = "DF";
-        seatingChart[0, 1] = "JV";
-        seatingChart[2, 1] = "XC";
-        seatingChart[4, 1] = "DW";
-        seatingChart[5, 1] = "IL";
-        seatingChart[6, 1] = "XH";
-        seatingChart[7, 1] = "SH";
-        seatingChart[0, 2] = "JH";
-        seatingChart[7, 2] = "BZ";
+        seatingChart[0, 0] = "ST";
+        seatingChart[0, 1] = "DH";
+        seatingChart[0, 2] = "AZ";
+        seatingChart[0, 3] = "AT";
+        seatingChart[0, 4] = "MF";
+        seatingChart[1, 0] = "AG";
+        seatingChart[1, 1] = "YL";
+        seatingChart[1, 2] = "VC";
+        seatingChart[1, 3] = "SP";
         seatingChart[0, 3] = "YB";
         seatingChart[1, 3] = "AX";
         seatingChart[2, 3] = "HW";

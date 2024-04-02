@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,11 +30,14 @@ public class ListExample : MonoBehaviour
         
         
         // Extra methods tests:
-        
         Debug.Log("Count: " + namesList.Count);
         Debug.Log("Names contains \"JACK\":" + namesList.Contains("JACK"));
         Debug.Log("Names contains \"LANNI\":" + namesList.Contains("LANNI"));
 
+        Debug.Log("Contains both: " + 
+                  (namesList.Contains("JACK") && 
+                   namesList.Contains("LANNI")));
+        
         namesList.Insert(4520, "LANNI");
 
         var indexOfLastLanni = 0;

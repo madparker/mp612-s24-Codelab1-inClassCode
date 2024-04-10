@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5b5b899e-7de9-4dae-9a03-045cd99b1ba2" name="Changes" comment="" />
+    <list default="true" id="f53299c6-c785-42f8-b979-06164a19c737" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/DestroyToken.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2eYaIcGSJoiAfsMwutvoXh0ei0N" />
+  <component name="ProjectId" id="2esL8fTYbGngWBqVGTbsNljRgKH" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -72,12 +75,13 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="5b5b899e-7de9-4dae-9a03-045cd99b1ba2" name="Changes" comment="" />
-      <created>1712083886926</created>
+      <changelist id="f53299c6-c785-42f8-b979-06164a19c737" name="Changes" comment="" />
+      <created>1712688180583</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1712083886926</updated>
-      <workItem from="1712083888509" duration="6497000" />
+      <updated>1712688180583</updated>
+      <workItem from="1712688182275" duration="4000" />
+      <workItem from="1712688217444" duration="4200000" />
     </task>
     <servers />
   </component>

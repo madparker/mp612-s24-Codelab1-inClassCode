@@ -47,10 +47,14 @@ public class SavePlayerScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             JSONNode transformNode = new JSONObject();
+
+            JSONArray jArray = new JSONArray();
             
             JSONObject posObj = new JSONObject();
             
-            transformNode.Add("pos", posObj);
+            jArray.Add(posObj);
+            
+            transformNode.Add("array", jArray);
             
             posObj.Add("x", transform.position.x);
             posObj.Add("y", transform.position.y);
@@ -62,13 +66,14 @@ public class SavePlayerScript : MonoBehaviour
             //       "y":0,
             //       "z":0}
             // }
+            
             Debug.Log(transformNode.ToString());
         }
     }
     
     private void ArrayOfObjectsParsing () {
         JSONNode node = JSON.Parse (json) ;
-      
+
         JSONArray allPersons = node.AsArray ;
 
         foreach (JSONObject person in allPersons) {

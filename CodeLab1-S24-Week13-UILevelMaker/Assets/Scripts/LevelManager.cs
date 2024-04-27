@@ -46,7 +46,7 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        inputField.text = fileName; //set the inputField to the default file location
+        inputField.text = fileName;
         
         levelHolder = new GameObject("Level");
         
@@ -72,16 +72,61 @@ public class LevelManager : MonoBehaviour
         levelHolder.transform.position = new Vector2(levelXOffset, levelYOffset);
     }
 
-    void Update()
+    public void SaveToFile()
     {
-        if (Input.GetKeyUp(KeyCode.Space))
+        fileName = inputField.text; //set the fileName to the current inputField value
+        FILE_PATH = Application.dataPath + FILE_DIR + fileName;
+        string asciiLevel = PrintLevel();
+        Debug.Log(asciiLevel);
+        File.WriteAllText(FILE_PATH, asciiLevel);
+    }
+
+    public void LoadFile()
+    {
+        Destroy(levelHolder);
+        levelHolder = new GameObject("Level");
+        
+        //set offsets based on width & height
+        levelXOffset = -levelWidth / 2;
+        levelYOffset = -levelHeight / 2;
+
+        level = new GameObject[levelWidth, levelHeight]; //set the size of our 2D array
+
+        fileName = inputField.text;
+        FILE_PATH = Application.dataPath + FILE_DIR + fileName;
+        string[] lines = File.ReadAllLines(FILE_PATH);
+        
+        //loop through every slot in our 2d array/grid
+        for (int y = 0; y < levelHeight; y++)
         {
-            fileName = inputField.text; //set the fileName to the current inputField value
-            FILE_PATH = Application.dataPath + FILE_DIR + fileName;
-            string asciiLevel = PrintLevel();
-            Debug.Log(asciiLevel);
-            File.WriteAllText(FILE_PATH, asciiLevel);
+            string line = lines[levelHeight - y - 1];
+            char[] chars = line.ToCharArray();
+            
+            for (int x = 0; x < levelWidth; x++)
+            {
+                int num = Int32.Parse(chars[x] + "");
+
+                switch (num)
+                {
+                   case 0:
+                       level[x, y] = Instantiate<GameObject>(blankTile);
+                       break;
+                   case 1:
+                       level[x, y] = Instantiate<GameObject>(blueTile);
+                       break;
+                   case 2:
+                       level[x, y] = Instantiate<GameObject>(greenTile);
+                       break;
+                }
+                level[x, y].transform.parent = levelHolder.transform;
+                level[x, y].transform.position = new Vector2(x, y);
+                level[x, y].GetComponent<TileController>().isPlaced = true;
+            }
         }
+
+        //positioning the levelholder with the offsets
+        levelHolder.transform.position = new Vector2(levelXOffset, levelYOffset);
+
     }
 
     string PrintLevel()

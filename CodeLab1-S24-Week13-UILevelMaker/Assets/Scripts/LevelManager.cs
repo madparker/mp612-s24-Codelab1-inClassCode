@@ -1,30 +1,35 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class LevelManager : MonoBehaviour
 {
-    GameObject[,] level;
-    GameObject levelHolder;
+    GameObject[,] level;    //2d Array that holds all our tiles
+    GameObject levelHolder; //gameObject that acts as a folder for tiles in the Unity GUI
 
-    public int levelWidth;
-    public int levelHeight;
+    public int levelWidth; //The width of the level being generated
+    public int levelHeight; //The height of the level being generated
 
-    int levelXOffset;
-    int levelYOffset;
+    int levelXOffset; //shift the position of the tiles on the x axis
+    int levelYOffset; //shift the position of the tiles on the y axis
 
+    //prefabs for the tiles
     public GameObject blankTile;
     public GameObject blueTile;
     public GameObject greenTile;
 
-    public static LevelManager instance;
+    public static LevelManager instance;  //singleton
 
-    // Start is called before the first frame update
-
+    string FILE_PATH;
+    const string FILE_DIR = "/Data/";
+    public string fileName = "level.txt";
+    
     void Awake()
     {
+        //singleton code
         if (instance == null)
         {
             DontDestroyOnLoad(gameObject);
@@ -38,16 +43,20 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        FILE_PATH = Application.dataPath + FILE_DIR + fileName;
+        
         levelHolder = new GameObject("Level");
         
+        //set offsets based on width & height
         levelXOffset = -levelWidth / 2;
         levelYOffset = -levelHeight / 2;
 
-        level = new GameObject[levelWidth, levelHeight];
+        level = new GameObject[levelWidth, levelHeight]; //set the size of our 2D array
 
+        //loop through every slot in our 2d array/grid
         for (int x = 0; x < levelWidth; x++)
         {
-            for (int y = 0; y < levelWidth; y++)
+            for (int y = 0; y < levelHeight; y++)
             {
                 level[x, y] = Instantiate<GameObject>(blankTile);
                 level[x, y].transform.parent = levelHolder.transform;
@@ -56,6 +65,7 @@ public class LevelManager : MonoBehaviour
             }
         }
 
+        //positioning the levelholder with the offsets
         levelHolder.transform.position = new Vector2(levelXOffset, levelYOffset);
     }
 
@@ -63,7 +73,9 @@ public class LevelManager : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            Debug.Log(PrintLevel());
+            string asciiLevel = PrintLevel();
+            Debug.Log(asciiLevel);
+            File.WriteAllText(FILE_PATH, asciiLevel);
         }
     }
 
@@ -71,9 +83,9 @@ public class LevelManager : MonoBehaviour
     {
         string result = "";
         
-        for (int x = 0; x < levelWidth; x++)
+        for (int y = levelHeight - 1 ; y >= 0; y--)
         {
-            for (int y = 0; y < levelWidth; y++)
+            for (int x = 0; x < levelWidth; x++)
             {
                 result += level[x, y].GetComponent<TileController>().type;
             }
@@ -86,6 +98,7 @@ public class LevelManager : MonoBehaviour
 
     public void PlaceTile(GameObject tile)
     {
+        //round down to an int position
         int x = Mathf.FloorToInt(tile.transform.position.x);
         int y = Mathf.FloorToInt(tile.transform.position.y);
 
@@ -93,13 +106,25 @@ public class LevelManager : MonoBehaviour
         y -= levelYOffset;
 
         Debug.Log("Tile Pos: "+ x + "x" + y);
-        
-        if (level[x, y] != null)
-        {
-            Destroy(level[x, y]);
-        }
 
-        level[x, y] = tile;
+        //check to make sure the tile is in a valid grid position
+        if (x >= 0 && x < levelWidth &&
+            y >= 0 && y < levelHeight)
+        {
+            //if there's already a tile there
+            if (level[x, y] != null)
+            {
+                Destroy(level[x, y]); //destroy existing tile
+            }
+
+            level[x, y] = tile; //place the new tile in that grid position
+            
+            CreateTile(tile.GetComponent<TileController>().type);
+        }
+        else
+        {
+            Destroy(tile); //destroy the tile if it's not at a valid grid location
+        }
     }
 
     public void CreateTile(int tileNum)

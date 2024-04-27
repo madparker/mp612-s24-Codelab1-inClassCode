@@ -43,8 +43,6 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        FILE_PATH = Application.dataPath + FILE_DIR + fileName;
-        
         levelHolder = new GameObject("Level");
         
         //set offsets based on width & height
@@ -73,6 +71,7 @@ public class LevelManager : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Space))
         {
+            FILE_PATH = Application.dataPath + FILE_DIR + fileName;
             string asciiLevel = PrintLevel();
             Debug.Log(asciiLevel);
             File.WriteAllText(FILE_PATH, asciiLevel);

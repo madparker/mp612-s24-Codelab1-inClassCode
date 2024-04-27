@@ -557,11 +557,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4639a5970f0934ec596448e48bde3786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelWidth: 10
-  levelHeight: 10
+  levelWidth: 8
+  levelHeight: 8
   blankTile: {fileID: 2790835069547683284, guid: 32aa7c7b8458342718c03cbbc2fb4834, type: 3}
   blueTile: {fileID: 4975710720401967246, guid: f2c2d4180369d42f1a68b3fbbd9b7076, type: 3}
   greenTile: {fileID: 206341461590110072, guid: 865e5324c68bd431e8bc9d815f48b95f, type: 3}
+  fileName: Level.txt
 --- !u!4 &540431208
 Transform:
   m_ObjectHideFlags: 0

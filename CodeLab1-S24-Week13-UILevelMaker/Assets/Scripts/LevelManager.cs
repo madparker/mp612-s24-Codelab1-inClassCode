@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -26,6 +27,8 @@ public class LevelManager : MonoBehaviour
     string FILE_PATH;
     const string FILE_DIR = "/Data/";
     public string fileName = "level.txt";
+
+    public TMP_InputField inputField;
     
     void Awake()
     {
@@ -43,6 +46,8 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        inputField.text = fileName; //set the inputField to the default file location
+        
         levelHolder = new GameObject("Level");
         
         //set offsets based on width & height
@@ -71,6 +76,7 @@ public class LevelManager : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Space))
         {
+            fileName = inputField.text; //set the fileName to the current inputField value
             FILE_PATH = Application.dataPath + FILE_DIR + fileName;
             string asciiLevel = PrintLevel();
             Debug.Log(asciiLevel);

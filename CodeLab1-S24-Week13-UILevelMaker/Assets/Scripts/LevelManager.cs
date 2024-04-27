@@ -83,6 +83,13 @@ public class LevelManager : MonoBehaviour
 
     public void LoadFile()
     {
+        fileName = inputField.text;
+        FILE_PATH = Application.dataPath + FILE_DIR + fileName;
+        string[] lines = File.ReadAllLines(FILE_PATH);
+
+        levelHeight = lines.Length;
+        levelWidth = lines[0].Length;
+        
         Destroy(levelHolder);
         levelHolder = new GameObject("Level");
         
@@ -92,10 +99,6 @@ public class LevelManager : MonoBehaviour
 
         level = new GameObject[levelWidth, levelHeight]; //set the size of our 2D array
 
-        fileName = inputField.text;
-        FILE_PATH = Application.dataPath + FILE_DIR + fileName;
-        string[] lines = File.ReadAllLines(FILE_PATH);
-        
         //loop through every slot in our 2d array/grid
         for (int y = 0; y < levelHeight; y++)
         {
